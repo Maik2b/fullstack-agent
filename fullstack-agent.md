@@ -22,6 +22,8 @@ Then look around the home folder and establish which situation you are in:
 - **A `CLAUDE.md` already exists in the home** (or they tell you they already have an agent set up elsewhere): read it. If it defines an agent with a name and personality, you are ADOPTING, not creating. Say something like "found [name], keeping them exactly as they are," and skip every identity question later.
 - **Nothing there:** fresh start. All questions apply.
 
+**If their agent lives somewhere else, THAT folder is the home.** Move this toolbox repo inside it, remove the now-empty my-agent folder the install command created, and proceed as an adoption. Never make a second home for an agent that already has one: a person's agent gets exactly one home, and it's the one they already built.
+
 **Scope of that answer, precisely.** The fresh-or-existing question is about prior INSTALLS of these pieces (a voice system, a visualizer, vault software). "Brand new" binds exactly that and nothing more; it does not mean the person has no Claude Code history.
 
 Three scanning rules that hold for the whole run:
