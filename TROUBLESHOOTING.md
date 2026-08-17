@@ -2,6 +2,16 @@
 
 This file covers only the problems that live BETWEEN the pieces. Each piece owns its own deeper guide: `backtalk/TROUBLESHOOTING.md`, `barehands/TROUBLESHOOTING.md`, `ai-visualizer/TROUBLESHOOTING.md`.
 
+## I closed the window in the middle of setup
+
+Nothing is lost. Open a new terminal (PowerShell on Windows), go back to the toolbox folder (`cd ~/my-agent/fullstack-agent`, or on Windows `cd $HOME\my-agent\fullstack-agent`), and run:
+
+```
+claude --continue
+```
+
+That reopens your most recent session with its memory intact; tell it "we got cut off, keep going with the setup." If it can't find a session to continue, run `claude "set me up"` instead: the installer starts over, finds everything already downloaded, and skips ahead instead of redoing it.
+
 ## The install command opened Claude Code, but it acts like nothing's there
 
 Then the download step failed before Claude Code started, and the error is in your terminal scrollback, right above where Claude opened. Type `/exit`, scroll up, and read it. On a Mac, a "developer tools" dialog may be waiting for an Open/Install click (that installs git; click Install and paste the command again). On Windows the command downloads a zip and needs no git, so a failure there is usually network. Fix what the message says, then paste the install command again.
