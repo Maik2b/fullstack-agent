@@ -85,6 +85,8 @@ This part belongs to this wizard alone. Write these config values, then read eac
 
 Explain the wiring in one sentence as you go, in their terms: "the voice writes little status notes; the face reads them; that is the whole connection."
 
+If hands were installed, that piece's own wizard also appends its board block to the CLAUDE.md; leave that to it, and make sure it landed. The one line in it that matters most: when the person asks to SEE something, the agent puts it on the glass with the `present` verb instead of answering in text.
+
 Last wire: **make the agent the mechanic.** Append a short section to the CLAUDE.md in the home folder (for an ADOPTED CLAUDE.md, show the person the section and ask before adding it):
 
 > ## You are the mechanic

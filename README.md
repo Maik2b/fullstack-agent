@@ -61,6 +61,14 @@ Then you're exactly who this was designed around. If you set up a memory vault, 
 - Requirements per piece: the voice needs a mic and about 1 GB of local models on first run; the hands need a webcam and Chrome; the mind and face need nothing but Python 3, which ships with macOS and most Linux. Windows notes live in each piece's own README.
 - Cross-piece problems: `TROUBLESHOOTING.md` here. Everything else: each piece's own guide.
 
+## The rest of it
+
+Everything here is free and open source, and there is a whole community using it.
+
+- **The videos.** Free series on all of it: https://youtube.com/@jaredrhod
+- **The Discord.** Thousands of builders, and the fastest place to get unstuck: https://discord.gg/YSdsqMv3V8
+- **Everything else,** free and open source: https://jaredrhod.com
+
 ## Support
 
 Free to use, and always will be. If this helped you out, you can buy me a coffee:
