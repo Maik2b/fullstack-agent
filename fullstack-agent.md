@@ -1,0 +1,124 @@
+# fullstack-agent: setup
+
+You are the user's Claude Code agent, and you are about to assemble a complete one: memory, voice, face, and hands. This file is the conductor. It collects every answer ONCE, then runs each piece's own setup with those answers already in hand, then wires everything together, and it ends with the agent's first spoken words.
+
+Ground rules, binding for the whole run:
+
+- **Plain English.** Assume the person installed Claude Code yesterday. Every technical thing gets a one-line explanation before it gets a name.
+- **One question at a time.** Wait for each answer.
+- **Never delete, overwrite, or move anything the person built.** Replacing something means the new piece takes over and the old one stays on disk, untouched, and you say so out loud.
+- **You do the work.** Run the commands, write the configs, make the edits. The person only acts when a step truly needs their hands (granting camera or mic permission, typing a password).
+
+## Phase 0: Find home, and find what already exists
+
+The agent's home is the folder CONTAINING this repo. Confirm that with the person in plain terms: "everything about your agent will live in [path], and this toolbox folder sits inside it." If they cloned this repo somewhere accidental (their Downloads folder, say), ask where the agent should live, create that folder, and move this repo inside it before going on.
+
+Then look around the home folder and establish which situation you are in:
+
+- **A `CLAUDE.md` already exists in the home** (or they tell you they already have an agent set up elsewhere): read it. If it defines an agent with a name and personality, you are ADOPTING, not creating. Say something like "found [name], keeping them exactly as they are," and skip every identity question later.
+- **Nothing there:** fresh start. All questions apply.
+
+**Scope of that answer, precisely.** The fresh-or-existing question is about prior INSTALLS of these pieces (a voice system, a visualizer, vault software). "Brand new" binds exactly that and nothing more; it does not mean the person has no Claude Code history.
+
+Three scanning rules that hold for the whole run:
+
+1. **Old Claude Code project memory (`~/.claude/projects/*/memory/`) is fair game and expected.** Migrating it into the new vault is part of what ai-memory-vault DOES. When its wizard reaches migration, list the projects found (name and rough size) and ask WHICH ones this agent's new memory system should take over. Migration copies; it never deletes the originals.
+2. **Existing Obsidian vaults are off-limits in the new-vault path.** If the person chose "use my existing vault," you work with the one vault they pointed at. If they chose a new vault, you never read any other vault they own, not even its folder names, and you never propose mirroring or importing its structure. Their notes are their private property, not setup material.
+3. **Everywhere else on their disk: ask before you look.** The home folder and the specific paths they point you at are yours to work in; any scan beyond that requires permission first, every time.
+
+Also ask, in plain words: "Before this repo existed, did you ever set up a voice system, a visualizer, or a memory vault for your AI, maybe from one of the prompts? If so, where did it land?" If they know, note the paths. If they say "somewhere, no idea," ask permission to look in the likely places for the telltale files (a `.voice_state` or `.jarvis_state` file, a visualizer HTML page, a vault of markdown notes). Ask first, search second, and never crawl their whole disk silently.
+
+## Phase 1: The menu
+
+Offer the four pieces, each in one plain sentence. **Lead with the easy answer: "all of it" is the first option and the default.** Only walk the individual yes/no picks if they want fewer than everything (the one flag to raise either way: hands needs a webcam):
+
+1. **The memory**: a filing cabinet of plain text files your AI actually reads and writes, so it remembers you, your work, and every lesson across every session.
+2. **The voice**: hold a key, say the thing out loud, and your agent answers through your speakers about a second later.
+3. **The face**: a living visualizer in your browser that idles, listens, thinks, and speaks in sync with your agent. Four faces ship; you pick your favorite.
+4. **The hands** *(needs a webcam)*: move notes and images around your screen with your bare hands, no controllers, no headset.
+
+## Phase 2: The one interview
+
+Collect every remaining answer now, so no later step ever has to ask. Skip anything Phase 0 already adopted or Phase 1 declined.
+
+1. **Their name.** You will use it in the finale.
+2. **The agent's identity** (skip entirely if adopted): the three doors from ai-memory-vault's setup. A: take Jarvis as-is, the author's own agent, personality and all. B: Jarvis's personality, renamed to whatever they want. C: build their own from scratch. Never silently pick; if they shrug, door A.
+3. **The vault** (memory piece): do they already have an Obsidian vault or a folder of notes? Point at it, never move it. If not, it gets created during install.
+4. **The talk key** (voice piece): which key they hold to speak. Default: home.
+5. **The voice** (voice piece): default `bm_lewis`, the British butler register. Offer the audition later during that piece's setup rather than listing sixty names now.
+6. **The default face** (face piece): board, radial, rain, or neural. Default: board, the living circuit board. They can switch any time by opening a different page.
+
+## Phase 3: Install the pieces
+
+Clone each chosen piece into the home folder as a sibling of this repo, from `github.com/jaredrhod/<name>`:
+ai-memory-vault, backtalk, barehands, ai-visualizer.
+
+**The adoption exceptions, checked before each clone:**
+
+- A piece already downloaded from these repos somewhere on the machine, that they actively use: do not duplicate it. Wire to their copy where it stands; wiring is just paths. A stale, unmodified copy sitting outside the home folder is different: prefer a fresh copy inside the home (so the update script reaches it) and leave the old one untouched.
+- A HAND-BUILT voice line or visualizer from the prompts era: our repo installs as the new default, and you say the honest sentence: "your old build stays right where it is; it just will not be the one that runs." Their files are never touched.
+- A hand-built visualizer SCENE (they designed what appears on screen): offer the promotion. COPY, never move, their page into `ai-visualizer/faces/<their-name-for-it>/index.html` with a small `face.json`, so their creation appears in the gallery beside the shipped faces. This is the one piece of the old world that is not an inferior copy of ours; treat it with respect.
+
+**Then run each piece's own setup, in this order, with the Phase 2 answers pre-supplied.** Each repo has a wizard file (`ai-memory-vault.md`, `backtalk.md`, `barehands.md`, `ai-visualizer.md`). Read each one and execute it faithfully, with one standing modification: any question the interview already answered gets its answer filled in silently instead of asked again. The component wizards are the source of truth for HOW each piece installs; this file only decides the answers and the order:
+
+1. **ai-memory-vault** first (it creates the vault and writes the person's `CLAUDE.md` into the HOME folder, carrying the identity from Phase 2 or the adopted one).
+2. **backtalk** second (its installer handles the Python environment, the two local models, and the one system library; on Windows follow its wizard's native lane).
+3. **ai-visualizer** third (no dependencies; seconds).
+4. **barehands** fourth (no dependencies; the camera permission happens on first open).
+
+## Phase 4: Wire the seams
+
+This part belongs to this wizard alone. Write these config values, then read each file back to confirm it landed:
+
+- `backtalk/backtalk.json`: `agent_dir` = the home folder. `name` = the agent's name. If the vault lives outside the home folder, add its path to `extra_dirs`. If hands were installed: `barehands_state_dir` = the `barehands/state` folder.
+- `backtalk/backtalk.json` greeting: set it to exactly `Hello <their name>, what are we working on today?` so every launch opens with the signature line.
+- `ai-visualizer/ai-visualizer.json`: `name` = the agent's name. `face` = their pick. `bus_dir` = the backtalk folder.
+- `barehands/barehands.json`: `name` = the agent's name.
+
+Explain the wiring in one sentence as you go, in their terms: "the voice writes little status notes; the face reads them; that is the whole connection."
+
+Last wire: **make the agent the mechanic.** Append a short section to the CLAUDE.md in the home folder (for an ADOPTED CLAUDE.md, show the person the section and ask before adding it):
+
+> ## You are the mechanic
+> This agent runs on open tools that live in this folder (the memory vault, backtalk, ai-visualizer, barehands). When anything breaks, acts strange, or needs changing, fixing it is YOUR job, not the person's: read the relevant tool's TROUBLESHOOTING.md and README, diagnose, and repair it yourself. Never send the person off to search the internet. If they ask how something works, explain it in plain English.
+
+## Phase 5: The first hello
+
+The finale. From the home folder, run `./fullstack-agent/start.sh` (Windows: `fullstack-agent\start.bat`). What should happen, and what you verify:
+
+1. The face's server starts and the browser opens on their chosen face, with the agent's name on it.
+2. The voice line warms up and then SPEAKS: "Hello [their name], what are we working on today?" while the face pulses with the words.
+3. Have them hold the talk key and ask their agent anything. Watch the face walk listening, thinking, speaking. First reply lands in a couple of seconds.
+
+If they skipped the voice: the face still opens, and you deliver the greeting yourself, in text, word for word. Nobody's first hello is silent.
+
+If any step fails, each repo has a `TROUBLESHOOTING.md`; work the relevant one with them instead of guessing.
+
+## Phase 6: Hand it over
+
+First, **shut down the finale stack you started in Phase 5**, so the launcher tests below can bind the same ports and nothing you spawned outlives setup. Kill exactly the process IDs you started, never whatever happens to be holding a port: on this person's machine a busy port can belong to something real that is not yours. Tell them plainly: what just ran was the test drive, and from here on the shortcuts are how the agent starts.
+
+Then **make the launchers**, so they never have to remember any of this. Three shortcuts on their Desktop, named with THEIR agent's name, one per way of using it (skip any whose pieces they did not install):
+
+1. **`Chat with <name>`** opens a typed Claude Code session in the home folder, terminal only. (macOS: a `.command` file containing `#!/bin/bash`, then the PATH export below, then `cd "<home folder>" && claude`. Windows: a `.bat` with `cd /d "<home folder>"` then `claude`.)
+2. **`Talk to <name>`** starts the voice and the face. (Runs `fullstack-agent/start.sh voice`, or `start.bat voice` on Windows.)
+3. **`<name> barehands`** starts the voice and the hands board, no face; the board IS the screen in this mode. (Runs `fullstack-agent/start.sh hands`, or `start.bat hands`.)
+
+**Every macOS `.command` MUST carry this line right after the shebang, before anything else runs:**
+
+```
+export PATH="$HOME/.local/bin:/opt/homebrew/bin:/usr/local/bin:$PATH"
+```
+
+A double-clicked shortcut launches with a bare system PATH where neither `claude` nor `uv` exist, so a launcher without the export fails silently. (Windows `.bat` files inherit the user's PATH and do not need it.)
+
+On macOS make each `.command` executable, and warn them once: the first double-click may ask permission; that is macOS being protective, click Open. **Test every launcher WITH them right now by double-clicking it; never hand over an untested shortcut.**
+
+Then close warmly and briefly:
+
+- **The daily habit:** the three Desktop shortcuts ARE the agent. Chat when they want to type, Talk when they want the voice and the face, barehands when they want the voice and the board.
+- **And say this part in your own words, because it matters most:** "If anything ever breaks, acts weird, or confuses you, or you want to change how something works: ask ME. Open the chat and tell me what is wrong, and I will fix it for you. You never need to search the internet or read a manual. Fixing this is part of my job." Most people do not know their agent can do this. Make sure this person leaves knowing.
+- **Update everything:** `./fullstack-agent/update.sh` pulls the newest version of every piece without touching their files.
+- **Where the knobs live:** each piece's config file sits in its own folder, and each piece's README explains its own tricks (the board's Space-key flythrough, the gesture guide, the voice options).
+
+Then get out of the way. The agent runs itself from here.
