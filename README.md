@@ -21,7 +21,7 @@ Every piece is optional. The wizard asks which ones you want and explains each i
 
 ## Install
 
-You need [Claude Code](https://claude.com/claude-code) with a Claude subscription, and git (macOS offers to install it the first time you use it; Windows: install [Git for Windows](https://git-scm.com/download/win) once). Then one paste into your terminal.
+You need [Claude Code](https://jaredrhod.com/start) with a Claude subscription, and git (macOS offers to install it the first time you use it; Windows: install [Git for Windows](https://git-scm.com/download/win) once). Then one paste into your terminal.
 
 Mac and Linux:
 
@@ -35,9 +35,9 @@ Windows (PowerShell):
 mkdir $HOME\my-agent; cd $HOME\my-agent; git clone https://github.com/jaredrhod/fullstack-agent; cd fullstack-agent; claude "set me up"
 ```
 
-That's the last time you touch the terminal. Claude Code opens with the installer already talking to you. (The agent lives in a folder right in your home directory on purpose: on Macs, things that run in the background out of Documents get silently blocked by the system.) Everything after that is a conversation: it asks for your agent's name and personality (or hands you mine, Jarvis, ready to use), which pieces you want, and where your notes live. It does the installing, the configuring, and the wiring itself.
+Claude Code opens with the installer already talking to you. (The agent lives in a folder right in your home directory on purpose: on Macs, things that run in the background out of Documents get silently blocked by the system.) Everything after that is a conversation: it asks for your agent's name and personality (or hands you mine, Jarvis, ready to use), which pieces you want, and where your notes live. It does the installing, the configuring, and the wiring itself.
 
-Already using Claude Code and don't want to touch a terminal at all? Tell your current session: *"clone github.com/jaredrhod/fullstack-agent into my agent folder, then read fullstack-agent/fullstack-agent.md and set me up."*
+Already inside a Claude Code session? Skip the paste and just say: *"clone github.com/jaredrhod/fullstack-agent into my agent folder, then read fullstack-agent/fullstack-agent.md and set me up."*
 
 ## Already built some of this?
 
