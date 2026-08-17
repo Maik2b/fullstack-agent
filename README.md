@@ -21,7 +21,7 @@ Every piece is optional. The wizard asks which ones you want and explains each i
 
 ## Install
 
-You need [Claude Code](https://jaredrhod.com/start) with a Claude subscription, and git (macOS offers to install it the first time you use it; Windows: install [Git for Windows](https://git-scm.com/download/win) once). Then one paste into your terminal.
+You need [Claude Code](https://jaredrhod.com/start) with a Claude subscription. Mac and Linux also use git (macOS offers to install it the first time you use it). Windows needs nothing else: the installer sets up git for you during setup. Then one paste into your terminal.
 
 Mac and Linux:
 
@@ -32,8 +32,10 @@ mkdir -p ~/my-agent && cd ~/my-agent && git clone https://github.com/jaredrhod/f
 Windows (PowerShell):
 
 ```
-mkdir $HOME\my-agent; cd $HOME\my-agent; git clone https://github.com/jaredrhod/fullstack-agent; cd fullstack-agent; claude "set me up"
+mkdir $HOME\my-agent; cd $HOME\my-agent; Invoke-WebRequest https://github.com/jaredrhod/fullstack-agent/archive/refs/heads/main.zip -OutFile fsa.zip; Expand-Archive fsa.zip .; Rename-Item fullstack-agent-main fullstack-agent; Remove-Item fsa.zip; cd fullstack-agent; claude "set me up"
 ```
+
+(The Windows command downloads the toolbox as a zip on purpose, so it works on a machine with no git installed. The installer sets up git for you during setup.)
 
 Claude Code opens with the installer already talking to you. (The agent lives in a folder right in your home directory on purpose: on Macs, things that run in the background out of Documents get silently blocked by the system.) Everything after that is a conversation: it asks for your agent's name and personality (or hands you mine, Jarvis, ready to use), which pieces you want, and where your notes live. It does the installing, the configuring, and the wiring itself.
 

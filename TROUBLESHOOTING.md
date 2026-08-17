@@ -2,6 +2,10 @@
 
 This file covers only the problems that live BETWEEN the pieces. Each piece owns its own deeper guide: `backtalk/TROUBLESHOOTING.md`, `barehands/TROUBLESHOOTING.md`, `ai-visualizer/TROUBLESHOOTING.md`.
 
+## The install command opened Claude Code, but it acts like nothing's there
+
+Then the download step failed before Claude Code started, and the error is in your terminal scrollback, right above where Claude opened. Type `/exit`, scroll up, and read it. On a Mac, a "developer tools" dialog may be waiting for an Open/Install click (that installs git; click Install and paste the command again). On Windows the command downloads a zip and needs no git, so a failure there is usually network. Fix what the message says, then paste the install command again.
+
 ## The face sits at idle while the voice talks
 
 The wiring between them is two lines of config. Check both:
