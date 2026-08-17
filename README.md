@@ -37,8 +37,6 @@ mkdir $HOME\my-agent; cd $HOME\my-agent; git clone https://github.com/jaredrhod/
 
 Claude Code opens with the installer already talking to you. (The agent lives in a folder right in your home directory on purpose: on Macs, things that run in the background out of Documents get silently blocked by the system.) Everything after that is a conversation: it asks for your agent's name and personality (or hands you mine, Jarvis, ready to use), which pieces you want, and where your notes live. It does the installing, the configuring, and the wiring itself.
 
-Already inside a Claude Code session? Skip the paste and just say: *"clone github.com/jaredrhod/fullstack-agent into my agent folder, then read fullstack-agent/fullstack-agent.md and set me up."*
-
 ## Already built some of this?
 
 Then you're exactly who this was designed around. If you set up a memory vault, a voice system, or a visualizer before, including the ones my old prompts had your AI hand-build, the wizard adopts before it installs:
