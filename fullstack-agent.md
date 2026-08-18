@@ -53,10 +53,10 @@ Collect every remaining answer now, so no later step ever has to ask. Skip anyth
 1. **Their name.** You will use it in the finale.
 2. **The agent's identity** (skip entirely if adopted): the three doors from ai-memory-vault's setup. A: take Jarvis as-is, the author's own agent, personality and all. B: Jarvis's personality, renamed to whatever they want. C: build their own from scratch. Never silently pick; if they shrug, door A.
 3. **The vault** (memory piece): do they already have an Obsidian vault or a folder of notes? Point at it, never move it. If not, it gets created during install.
-4. **The talk key** (voice piece): which key they hold to speak. Default: home.
+4. **The microphone** (voice piece): push to talk (hold a key to speak, the default: the mic is closed otherwise, so room audio can never trigger the agent) or hands-free listening (always listening, no button; room audio and videos CAN trigger it, and the talk key still works as the interrupt)? Then, which key. Defaults: push to talk, the home key. They can switch modes any time by voice ("go hands free" / "push to talk mode").
 5. **The voice** (voice piece): default `bm_lewis`, the British butler register. Offer the audition later during that piece's setup rather than listing sixty names now.
 6. **The default face** (face piece): board, radial, rain, or neural. Default: board, the living circuit board. They can switch any time by opening a different page.
-7. **Permissions** (voice piece): when their agent wants to do something real mid-conversation (write a file, run a command), should it ask out loud first and wait for their spoken yes or no (the default), or run fully hands-free without asking? Explain the trade in one honest sentence each way. Default: ask. Their answer lands in backtalk's config in Phase 4, and they can change it any time later by telling their agent (takes effect next launch), or by saying "go hands free" (then "confirm") or "start asking again" in a voice session for an immediate flip.
+7. **Permissions** (voice piece): when their agent wants to do something real mid-conversation (write a file, run a command), should it ask out loud first and wait for their spoken yes or no (the default), or run fully hands-free without asking? Explain the trade in one honest sentence each way. Call it auto-approve, never "hands-free" (that word belongs to the microphone question above). Default: ask. Their answer lands in backtalk's config in Phase 4, and they can change it any time later by telling their agent (takes effect next launch), or by saying "stop asking for permission" (then "confirm") or "start asking again" in a voice session for an immediate flip.
 
 ## Phase 3: Install the pieces
 
@@ -84,7 +84,7 @@ This part belongs to this wizard alone. Write these config values, then read eac
 
 - `backtalk/backtalk.json`: `agent_dir` = the home folder. `name` = the agent's name. If the vault lives outside the home folder, add its path to `extra_dirs`. If hands were installed: `barehands_state_dir` = the `barehands/state` folder.
 - `backtalk/backtalk.json` greeting: set it to exactly `Hello <their name>, what are we working on today?` so every launch opens with the signature line.
-- `backtalk/backtalk.json`: `permission_mode` = their Phase 2 answer, `"ask"` or `"bypassPermissions"`.
+- `backtalk/backtalk.json`: `permission_mode` = their Phase 2 answer, `"ask"` or `"bypassPermissions"`; `mic_mode` = their Phase 2 answer, `"ptt"` or `"open"`.
 - `ai-visualizer/ai-visualizer.json`: `name` = the agent's name. `face` = their pick. `bus_dir` = the backtalk folder.
 - `barehands/barehands.json`: `name` = the agent's name.
 
