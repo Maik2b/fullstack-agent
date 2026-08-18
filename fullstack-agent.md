@@ -56,6 +56,7 @@ Collect every remaining answer now, so no later step ever has to ask. Skip anyth
 4. **The talk key** (voice piece): which key they hold to speak. Default: home.
 5. **The voice** (voice piece): default `bm_lewis`, the British butler register. Offer the audition later during that piece's setup rather than listing sixty names now.
 6. **The default face** (face piece): board, radial, rain, or neural. Default: board, the living circuit board. They can switch any time by opening a different page.
+7. **Permissions** (voice piece): when their agent wants to do something real mid-conversation (write a file, run a command), should it ask out loud first and wait for their spoken yes or no (the default), or run fully hands-free without asking? Explain the trade in one honest sentence each way. Default: ask. Their answer lands in backtalk's config in Phase 4, and they can change it any time later by telling their agent (takes effect next launch), or by saying "go hands free" (then "confirm") or "start asking again" in a voice session for an immediate flip.
 
 ## Phase 3: Install the pieces
 
@@ -83,6 +84,7 @@ This part belongs to this wizard alone. Write these config values, then read eac
 
 - `backtalk/backtalk.json`: `agent_dir` = the home folder. `name` = the agent's name. If the vault lives outside the home folder, add its path to `extra_dirs`. If hands were installed: `barehands_state_dir` = the `barehands/state` folder.
 - `backtalk/backtalk.json` greeting: set it to exactly `Hello <their name>, what are we working on today?` so every launch opens with the signature line.
+- `backtalk/backtalk.json`: `permission_mode` = their Phase 2 answer, `"ask"` or `"bypassPermissions"`.
 - `ai-visualizer/ai-visualizer.json`: `name` = the agent's name. `face` = their pick. `bus_dir` = the backtalk folder.
 - `barehands/barehands.json`: `name` = the agent's name.
 
