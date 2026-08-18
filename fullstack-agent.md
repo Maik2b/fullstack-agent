@@ -36,12 +36,15 @@ Also ask, in plain words: "Before this repo existed, did you ever set up a voice
 
 ## Phase 1: The menu
 
-Offer the four pieces, each in one plain sentence. **Lead with the easy answer: "all of it" is the first option and the default.** Only walk the individual yes/no picks if they want fewer than everything (the one flag to raise either way: hands needs a webcam):
+Offer the Jarvis stack, each piece in one plain sentence. **Lead with the easy answer: "the stack" (all three) is the first option and the default.**
 
 1. **The memory**: a filing cabinet of plain text files your AI actually reads and writes, so it remembers you, your work, and every lesson across every session.
 2. **The voice**: hold a key, say the thing out loud, and your agent answers through your speakers about a second later.
 3. **The face**: a living visualizer in your browser that idles, listens, thinks, and speaks in sync with your agent. Four faces ship; you pick your favorite.
-4. **The hands** *(needs a webcam)*: move notes and images around your screen with your bare hands, no controllers, no headset.
+
+Then mention the optional add-on, once, without pushing it:
+
+- **The hands** *(optional extra, needs a webcam)*: move notes and images around your screen with your bare hands, no controllers, no headset. It opens in its own window when they want it, instead of the face. They can take it now or come back for it later; adding it later is the same one command, and this installer re-run adds only what is missing.
 
 ## Phase 2: The one interview
 
