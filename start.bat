@@ -32,11 +32,13 @@ if exist "ai-visualizer\" if not "%1"=="hands" (
 
 if exist "barehands\" if not "%1"=="voice" (
   echo   hands: starting
+  rem if errorlevel reads the where result at run time. A percent-style
+  rem check here would expand when this block is parsed and test a stale value.
   where py >nul 2>nul
-  if %errorlevel%==0 (
-    start "agent hands" cmd /c "cd barehands && py server.py"
-  ) else (
+  if errorlevel 1 (
     start "agent hands" cmd /c "cd barehands && python server.py"
+  ) else (
+    start "agent hands" cmd /c "cd barehands && py server.py"
   )
 )
 

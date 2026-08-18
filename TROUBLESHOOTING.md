@@ -18,10 +18,10 @@ Then the download step failed before Claude Code started, and the error is in yo
 
 ## The face sits at idle while the voice talks
 
-The wiring between them is two lines of config. Check both:
+The wiring is one config line, plus a restart. Check both:
 
-1. `ai-visualizer/ai-visualizer.json` should have `"bus_dir"` pointing at your backtalk folder.
-2. Restart the visualizer server after any config change (Ctrl-C the stack, run start.sh again).
+1. `ai-visualizer/ai-visualizer.json` should have `"bus_dir"` pointing at your backtalk folder. (The same wire can run from the other side instead: `"signals_dir"` in `backtalk/backtalk.json` pointing at the visualizer folder. One direction, not both.)
+2. Restart the visualizer server after any config change (Ctrl-C the stack, run start.sh again). Config edits only take effect on restart.
 
 While the agent speaks, the backtalk folder should contain fresh `.voice_state` and `.voice_waveform` files. If they are not appearing, the problem is on the voice side; work backtalk's own guide.
 
