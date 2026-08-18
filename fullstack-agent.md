@@ -52,7 +52,7 @@ Collect every remaining answer now, so no later step ever has to ask. Skip anyth
 
 1. **Their name.** You will use it in the finale.
 2. **The agent's identity** (skip entirely if adopted): the three doors from ai-memory-vault's setup. A: take Jarvis as-is, the author's own agent, personality and all. B: Jarvis's personality, renamed to whatever they want. C: build their own from scratch. Never silently pick; if they shrug, door A.
-3. **The vault** (memory piece): do they already have an Obsidian vault or a folder of notes? Point at it, never move it. If not, it gets created during install.
+3. **The vault** (memory piece): Obsidian's own app config (`obsidian.json`) lists every vault on the machine with its path, and reading it beats quizzing a person who may not know what they have (it lists paths only, never note contents). Vaults it finds get offered by name ALONGSIDE the always-present option of a brand-new vault just for this system; having a vault never implies wanting to reuse it. Whatever they pick gets pointed at, never moved. A fresh vault is created during install at `~/Documents/<their name for it>`, and the installer says the full path out loud the moment it exists.
 4. **The microphone** (voice piece): push to talk (hold a key to speak, the default: the mic is closed otherwise, so room audio can never trigger the agent) or hands-free listening (always listening, no button; room audio and videos CAN trigger it, and the talk key still works as the interrupt)? Then, which key. Defaults: push to talk, the home key. They can switch modes any time by voice ("go hands free" / "push to talk mode").
 5. **The voice** (voice piece): default `bm_lewis`, the British butler register. Offer the audition later during that piece's setup rather than listing sixty names now.
 6. **The default face** (face piece): board, radial, rain, or neural. Default: board, the living circuit board. They can switch any time by opening a different page.
@@ -82,7 +82,7 @@ ai-memory-vault, backtalk, barehands, ai-visualizer.
 
 This part belongs to this wizard alone. Write these config values, then read each file back to confirm it landed:
 
-- `backtalk/backtalk.json`: `agent_dir` = the home folder. `name` = the agent's name. If the vault lives outside the home folder, add its path to `extra_dirs`. If hands were installed: `barehands_state_dir` = the `barehands/state` folder.
+- `backtalk/backtalk.json`: `agent_dir` = the home folder. `name` = the agent's name. Add the vault's path to `extra_dirs`: a fresh vault lives at `~/Documents/<name>`, outside the home folder on purpose, and an adopted one lives wherever it always did. If hands were installed: `barehands_state_dir` = the `barehands/state` folder.
 - `backtalk/backtalk.json` greeting: set it to exactly `Hello <their name>, what are we working on today?` so every launch opens with the signature line.
 - `backtalk/backtalk.json`: `permission_mode` = their Phase 2 answer, `"ask"` or `"bypassPermissions"`; `mic_mode` = their Phase 2 answer, `"ptt"` or `"open"`.
 - `ai-visualizer/ai-visualizer.json`: `name` = the agent's name. `face` = their pick. `bus_dir` = the backtalk folder.

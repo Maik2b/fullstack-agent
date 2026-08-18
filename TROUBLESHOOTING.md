@@ -1,6 +1,6 @@
 # Troubleshooting
 
-This file covers only the problems that live BETWEEN the pieces. Each piece owns its own deeper guide: `backtalk/TROUBLESHOOTING.md`, `barehands/TROUBLESHOOTING.md`, `ai-visualizer/TROUBLESHOOTING.md`.
+This file covers only the problems that live BETWEEN the pieces. Each piece owns its own deeper guide: `ai-memory-vault/TROUBLESHOOTING.md`, `backtalk/TROUBLESHOOTING.md`, `barehands/TROUBLESHOOTING.md`, `ai-visualizer/TROUBLESHOOTING.md`.
 
 ## I closed the window in the middle of setup
 
