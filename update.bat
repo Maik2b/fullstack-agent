@@ -1,5 +1,5 @@
 @echo off
-rem fullstack-agent: give your AI a full stack — memory, voice, face, hands.
+rem fullstack-agent: give your AI a full stack. memory, voice, face, hands.
 rem Copyright (C) 2026 Jared Rhodenizer
 rem
 rem This program is free software: you can redistribute it and/or modify
@@ -21,15 +21,44 @@ rem Pulls the newest version of every installed piece, and of this repo.
 rem Your files live outside the repos, so updates never touch them. If git
 rem reports a conflict on a config you edited, your edit wins.
 
-cd /d "%~dp0.."
+rem Run from a temp copy: cmd reads .bat files by byte offset, so a script
+rem that updates itself mid-run gets garbled. The copy is immune.
+if "%~1"=="__run__" goto run
+copy /y "%~f0" "%TEMP%\fsa-update.bat" >nul
+call "%TEMP%\fsa-update.bat" __run__ "%~dp0"
+exit /b %errorlevel%
+
+:run
+setlocal
+cd /d "%~2.."
 for %%r in (fullstack-agent ai-memory-vault backtalk barehands ai-visualizer) do (
-  if exist "%%r\.git\" (
-    echo == %%r
-    rem show what is arriving BEFORE applying it
-    git -C "%%r" fetch -q origin 2>nul
-    git -C "%%r" log --oneline "..@{u}" 2>nul
-    git -C "%%r" pull --ff-only
-  )
+  if exist "%%r\.git\" call :one "%%r"
 )
 echo update complete.
 if not exist "%USERPROFILE%\Desktop\Update *" echo Tip: want a desktop Update icon that does this on a double-click? Open your agent and ask for one.
+exit /b 0
+
+:one
+echo == %~1
+rem show what is arriving BEFORE applying it
+git -C "%~1" fetch -q origin 2>nul
+git -C "%~1" log --oneline "..@{u}" 2>nul
+rem one-time migration (2026-08): the per-piece configs moved out of git
+rem tracking so an update can never collide with personal settings. If
+rem this clone still tracks one, lift it aside, pull, put it back as-is.
+set CFG=
+if "%~1"=="backtalk" set CFG=backtalk.json
+if "%~1"=="barehands" set CFG=barehands.json
+if "%~1"=="ai-visualizer" set CFG=ai-visualizer.json
+set MIGRATE=0
+if not defined CFG goto pull
+if not exist "%~1\%CFG%" goto pull
+git -C "%~1" ls-files --error-unmatch "%CFG%" >nul 2>nul
+if errorlevel 1 goto pull
+copy /y "%~1\%CFG%" "%~1\%CFG%.mine" >nul
+git -C "%~1" checkout -- "%CFG%"
+set MIGRATE=1
+:pull
+git -C "%~1" pull --ff-only
+if "%MIGRATE%"=="1" if exist "%~1\%CFG%.mine" move /y "%~1\%CFG%.mine" "%~1\%CFG%" >nul
+exit /b 0
