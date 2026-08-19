@@ -16,6 +16,10 @@ That reopens your most recent session with its memory intact; tell it "we got cu
 
 Then the download step failed before Claude Code started, and the error is in your terminal scrollback, right above where Claude opened. Type `/exit`, scroll up, and read it. On a Mac, a "developer tools" dialog may be waiting for an Open/Install click (that installs git; click Install and paste the command again). On Windows the command downloads a zip and needs no git, so a failure there is usually network. Fix what the message says, then paste the install command again.
 
+## The Mac says "xcrun: error: invalid active developer path"
+
+Your Mac is missing Apple's Command Line Tools, which git needs. One command fixes it: run `xcode-select --install` in the same terminal, click Install on the popup, wait the few minutes it takes, then paste the install command again. This also shows up on Macs that recently upgraded macOS, because the upgrade can clear the tools; the same command puts them back.
+
 ## Claude opened a welcome screen (or asked me to log in) instead of setting up
 
 Then this is your first-ever launch of Claude Code, and it runs its own one-time setup before anything else can happen: pick a text style, choose "Claude account with subscription" as the sign-in method (not the Console option, that's pay-per-use developer billing), and log in through your browser. Your "set me up" from the install command didn't survive that detour. No harm done: once you're signed in, paste the install command again and the wizard starts talking.
