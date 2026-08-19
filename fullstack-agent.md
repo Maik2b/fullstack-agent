@@ -142,6 +142,7 @@ On macOS make each `.command` executable, and warn them once: the first double-c
 Then say the closing pieces, warmly and briefly, WHILE THEY ARE STILL IN THIS SESSION (the launcher test comes after, and it hands them to a different window):
 
 - **The daily habit:** the three Desktop shortcuts ARE the agent. Chat when they want to type, Talk when they want the voice and the face, barehands when they want the voice and the board.
+- **Closing a window never loses anything:** `claude --continue` in the home folder reopens the most recent session mid-thought. And say the folder rule once, plainly: the agent only wakes up as itself when Claude Code opens in its home folder, which is exactly what the shortcuts do. Opened anywhere else, Claude is a stranger.
 - **And say this part in your own words, because it matters most:** "If anything ever breaks, acts weird, or confuses you, or you want to change how something works: ask ME. Open the chat and tell me what is wrong, and I will fix it for you. You never need to search the internet or read a manual. Fixing this is part of my job." Most people do not know their agent can do this. Make sure this person leaves knowing.
 - **Update everything:** `./fullstack-agent/update.sh` pulls the newest version of every piece without touching their files.
 - **Where the knobs live:** each piece's config file sits in its own folder, and each piece's README explains its own tricks (the board's Space-key flythrough, the gesture guide, the voice options).
