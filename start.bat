@@ -46,4 +46,12 @@ if exist "backtalk\" (
   echo   voice: starting in this window. Close it to hang up.
   cd backtalk
   uv run python -m backtalk.main
+  rem A clean goodbye exits 0 and the window may close. An error exits
+  rem nonzero, and the window HOLDS so the message can be read.
+  if errorlevel 1 (
+    echo.
+    echo   The voice line stopped with an error. The message is above.
+    echo   The log lives in backtalk\logs\backtalk.log
+    pause
+  )
 )
