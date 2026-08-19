@@ -37,3 +37,6 @@ for repo in fullstack-agent ai-memory-vault backtalk barehands ai-visualizer; do
   fi
 done
 echo "update complete."
+if ! ls "$HOME/Desktop/Update "*.command >/dev/null 2>&1; then
+  echo "Tip: want a desktop Update icon that does this on a double-click? Open your agent and ask for one."
+fi

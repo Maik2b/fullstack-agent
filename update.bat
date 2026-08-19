@@ -32,3 +32,4 @@ for %%r in (fullstack-agent ai-memory-vault backtalk barehands ai-visualizer) do
   )
 )
 echo update complete.
+if not exist "%USERPROFILE%\Desktop\Update *" echo Tip: want a desktop Update icon that does this on a double-click? Open your agent and ask for one.
