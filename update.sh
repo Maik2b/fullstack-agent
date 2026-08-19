@@ -28,6 +28,10 @@ HOME_DIR="$(dirname "$HERE")"
 for repo in fullstack-agent ai-memory-vault backtalk barehands ai-visualizer; do
   if [ -d "$HOME_DIR/$repo/.git" ]; then
     echo "== $repo"
+    # show what is arriving BEFORE applying it, so "what changed?"
+    # answers itself on every update
+    git -C "$HOME_DIR/$repo" fetch -q origin 2>/dev/null
+    git -C "$HOME_DIR/$repo" log --oneline "..@{u}" 2>/dev/null | sed "s/^/   new: /"
     git -C "$HOME_DIR/$repo" pull --ff-only || \
       echo "   (couldn't fast-forward; your local edits win. See the note at the top of this script.)"
   fi

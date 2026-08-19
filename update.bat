@@ -25,6 +25,9 @@ cd /d "%~dp0.."
 for %%r in (fullstack-agent ai-memory-vault backtalk barehands ai-visualizer) do (
   if exist "%%r\.git\" (
     echo == %%r
+    rem show what is arriving BEFORE applying it
+    git -C "%%r" fetch -q origin 2>nul
+    git -C "%%r" log --oneline "..@{u}" 2>nul
     git -C "%%r" pull --ff-only
   )
 )
