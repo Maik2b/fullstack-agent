@@ -45,6 +45,9 @@ if exist "barehands\" if not "%1"=="voice" (
 if exist "backtalk\" (
   echo   voice: starting in this window. Close it to hang up.
   cd backtalk
+  rem Self-repair: reconcile the voice line's packages before launch
+  rem (fast when current; heals a half-installed environment).
+  uv sync -q --inexact >nul 2>nul
   uv run python -m backtalk.main
   rem A clean goodbye exits 0 and the window may close. An error exits
   rem nonzero, and the window HOLDS so the message can be read.
