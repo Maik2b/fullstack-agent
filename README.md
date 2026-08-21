@@ -38,10 +38,10 @@ mkdir -p ~/my-agent && cd ~/my-agent && git clone https://github.com/jaredrhod/f
 Windows (PowerShell):
 
 ```
-mkdir $HOME\my-agent; cd $HOME\my-agent; Invoke-WebRequest https://github.com/jaredrhod/fullstack-agent/archive/refs/heads/main.zip -OutFile fsa.zip; Expand-Archive fsa.zip .; Rename-Item fullstack-agent-main fullstack-agent; Remove-Item fsa.zip; cd fullstack-agent; claude "set me up"
+$d="$env:USERPROFILE\.local\bin"; if (Test-Path "$d\claude.exe") { $env:Path="$d;$env:Path" }; New-Item -ItemType Directory -Force -Path $HOME\my-agent | Out-Null; cd $HOME\my-agent; if (-not (Test-Path fullstack-agent)) { Invoke-WebRequest https://github.com/jaredrhod/fullstack-agent/archive/refs/heads/main.zip -OutFile fsa.zip; Expand-Archive fsa.zip . -Force; Rename-Item fullstack-agent-main fullstack-agent; Remove-Item fsa.zip }; cd fullstack-agent; if (Get-Command claude -ErrorAction SilentlyContinue) { claude "set me up" } else { Write-Output "Claude Code is not installed yet. Install it first at https://jaredrhod.com/start then paste this again." }
 ```
 
-(The Windows command downloads the toolbox as a zip on purpose, so it works on a machine with no git installed. The installer sets up git for you during setup.)
+(The Windows command downloads the toolbox as a zip on purpose, so it works on a machine with no git installed. The installer sets up git for you during setup. Safe to paste twice: a second run skips the download and picks up where it left off. If it tells you Claude Code is not installed yet, do the [start page](https://jaredrhod.com/start) first. Heads up for that step on Windows: the Claude Code installer downloads about 330 MB and prints nothing at all while it does, so leave that window alone until it says Installation complete.)
 
 Claude Code opens with the installer already talking to you. (The agent lives in a folder right in your home directory on purpose: on Macs, things that run in the background out of Documents get silently blocked by the system.) Everything after that is a conversation: it asks for your agent's name and personality (or hands you mine, Jarvis, ready to use), which pieces you want, and where your notes live. It does the installing, the configuring, and the wiring itself.
 
