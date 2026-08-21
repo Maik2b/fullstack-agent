@@ -69,11 +69,11 @@ Then you're exactly who this was designed around. If you set up a memory vault, 
 
 ## The rest of it
 
-Everything here is free and open source, and there is a whole community using it.
+Everything here is free and open, and there is a whole community using it.
 
 - **The videos.** Free series on all of it: https://youtube.com/@jaredrhod
 - **The Discord.** Thousands of builders, and the fastest place to get unstuck: https://discord.gg/YSdsqMv3V8
-- **Everything else,** free and open source: https://jaredrhod.com
+- **Everything else,** free and open: https://jaredrhod.com
 
 ## Support
 
