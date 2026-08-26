@@ -27,7 +27,12 @@ cd /d "%~dp0.."
 
 if exist "ai-visualizer\" if not "%1"=="hands" (
   echo   face:  starting
-  start "agent face" cmd /c "cd ai-visualizer && run.bat"
+  rem Explicit ".\" ON PURPOSE: some machines' cmd.exe won't resolve a
+  rem bare "run.bat" found only via the current directory when it's
+  rem run non-interactively through /c — it reports "not recognized"
+  rem even though the file is right there. An explicit relative path
+  rem always resolves.
+  start "agent face" cmd /c "cd ai-visualizer && .\run.bat"
 )
 
 if exist "barehands\" if not "%1"=="voice" (
